@@ -5,11 +5,20 @@
 import { Text } from './components/Text'
 import { SectionTitle } from './components/SectionTitle'
 import { NameForm } from './components/forms/NameForm'
+import { useState } from 'react'
 
 function App() {
 
+  const [tablemates, setTablemates] = useState<string[]>([]);
+
   const handleAddName = (name : string) => {
+    setTablemates([...tablemates, name]);
     console.log("Name Added:", name);
+  }
+  
+  const handleDeleteName = (index : number) => {
+    setTablemates(tablemates.filter((_, i) => i !== index));
+    console.log("Name Deleted at index:", index);
   }
  
   return (
@@ -27,6 +36,20 @@ function App() {
           buttonText='Add Tablemate'
           placeholder='Enter Tablemate Name'
         />
+
+        <div className='flex flex-col max-h-70 overflow-y-auto'>
+          {tablemates.map((tablemate, index) => (
+            <div key={index} className='flex items-center bg-blue-500 rounded p-2 my-1 mx-2'>
+              <Text text={tablemate} className="text-lg text-white flex-1" />
+              <button 
+                onClick={() => handleDeleteName(index)}
+                className='bg-red-500 text-white px-3 py-1 rounded'
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
 
       </main>
 
