@@ -9,9 +9,15 @@ import { useState } from 'react'
 
 function App() {
 
+  const MAX_TABLEMATES = 20;
+
   const [tablemates, setTablemates] = useState<string[]>([]);
 
   const handleAddName = (name : string) => {
+    if (tablemates.length >= MAX_TABLEMATES) {
+      alert(`Maximum ${MAX_TABLEMATES} tablemates allowed!`);
+      return;
+    }
     setTablemates([...tablemates, name]);
     console.log("Name Added:", name);
   }
@@ -30,7 +36,8 @@ function App() {
       <main className='bg-white text-center flex-1'>
         
         {/* Tablemates Section */}
-        <SectionTitle text="Tablemates (Max : 20)"/>
+
+        <SectionTitle text={`Tablemates (Max : ${MAX_TABLEMATES})`}/>
         <NameForm
           onSubmit={handleAddName}
           buttonText='Add Tablemate'
