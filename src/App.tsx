@@ -114,8 +114,10 @@ function App() {
 
         <SectionTitle text={`Service Charge (Optional)`}/>
         <ExtraChargeForm value={serviceCharge} onChange={setServiceCharge} placeholder='Service Charge (Optional)'/>
-      </main>
 
+        <SectionTitle text={`Price Calculation`}/>
+      
+      </main>
       <footer className='bg-slate-800 p-3 w-full text-center'>
         <Text text="Thank you for using my service" className="text-xs-1 text-white"/>
       </footer>
