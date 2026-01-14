@@ -12,40 +12,45 @@ interface FoodDrinksTableProps {
 }
 
 export const FoodDrinkTable = ({ foodDrinks, onOpenModal, onDelete }: FoodDrinksTableProps) => {
+  // Don't render anything if no items
+  if (foodDrinks.length === 0) {
+    return null;
+  }
+
   return (
-    <div className='mx-auto max-w-md w-full'>
-      <table className='w-full border-separate table-fixed' style={{ borderSpacing: '8px' }}>
+    <div className='mx-auto max-w-md sm:max-w-2xl lg:max-w-4xl w-full px-2 sm:px-4'>
+      <table className='w-full border-separate table-fixed' style={{ borderSpacing: '4px' }}>
         <thead>
           <tr>
-            <th className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>Item</th>
-            <th className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>Amount</th>
-            <th className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>Price</th>
-            <th className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>Shared</th>
-            <th className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>Action</th>
+            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Item</th>
+            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Amount</th>
+            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Price</th>
+            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Shared</th>
+            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Action</th>
           </tr>
         </thead>
       </table>
     
-      <div className='max-h-70 overflow-y-auto hide-scrollbar'>
-        <table className='w-full border-separate table-fixed' style={{ borderSpacing: '8px' }}>
+      <div className='max-h-60 sm:max-h-80 lg:max-h-96 overflow-y-auto hide-scrollbar'>
+        <table className='w-full border-separate table-fixed' style={{ borderSpacing: '4px' }}>
           <tbody>
             {foodDrinks.map((item, index) => (
               <tr key={index}>
-                <td className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>{item.foodDrink}</td>
-                <td className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>{item.amount}</td>
-                <td className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>{item.price}</td>
-                <td className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm text-center'>
+                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{item.foodDrink}</td>
+                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{item.amount}</td>
+                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{item.price}</td>
+                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base text-center'>
                   <button 
                     onClick={() => onOpenModal(index)}
-                    className='bg-green-500 text-white px-2 py-1 rounded text-xs'
+                    className='bg-slate-600 text-white px-2 py-1 rounded text-xs sm:text-sm hover:bg-slate-500'
                   >
                     {item.sharedWith.length > 0 ? `👤${item.sharedWith.length}` : 'Choose'}
                   </button>
                 </td>
-                <td className='text-white bg-blue-500 px-2 py-1 rounded-lg text-sm'>
+                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>
                   <button 
                     onClick={() => onDelete(index)}
-                    className='bg-red-500 text-white px-2 py-1 rounded text-xs'
+                    className='bg-slate-600 text-white px-2 py-1 rounded text-xs sm:text-sm hover:bg-slate-500'
                   >
                     Delete
                   </button>

@@ -15,51 +15,48 @@ export const TableMateSelector = ({
   onUnselectAll,
   onSave
 }: TableMateSelectorProps) => {
-  if (tablemates.length === 0) {
-    return <p className='text-gray-600 mb-4'>No tablemates added yet. Please add tablemates first.</p>;
-  }
-
   return (
     <>
-      <h2 className='text-xl font-bold mb-4 text-black'>Who shared this item?</h2>
+      <h2 className='text-xl sm:text-2xl font-bold mb-4 text-slate-800'>Select Tablemates</h2>
       
-      <div className='max-h-64 overflow-y-auto mb-4'>
+      <div className='max-h-60 sm:max-h-80 overflow-y-auto mb-4'>
         {tablemates.map((name, index) => (
-          <div key={index} className='flex items-center gap-2 p-2 hover:bg-gray-100 rounded'>
+          <div
+            key={index}
+            className='flex items-center p-2 sm:p-3 mb-2 bg-slate-100 hover:bg-slate-200 rounded cursor-pointer'
+            onClick={() => onToggle(name)}
+          >
             <input
               type='checkbox'
-              id={`tablemate-${index}`}
               checked={tempSelected.includes(name)}
               onChange={() => onToggle(name)}
-              className='w-4 h-4'
+              className='mr-3 w-4 h-4 sm:w-5 sm:h-5 cursor-pointer accent-slate-600'
             />
-            <label htmlFor={`tablemate-${index}`} className='text-black flex-1 cursor-pointer'>
-              {name}
-            </label>
+            <span className='text-slate-800 text-sm sm:text-base'>{name}</span>
           </div>
         ))}
       </div>
 
       <div className='flex gap-2 mb-4'>
-        <button 
+        <button
           onClick={onSelectAll}
-          className='flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'
+          className='bg-slate-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base hover:bg-slate-500 flex-1'
         >
           Select All
         </button>
-        <button 
+        <button
           onClick={onUnselectAll}
-          className='flex-1 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600'
+          className='bg-slate-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base hover:bg-slate-500 flex-1'
         >
           Unselect All
         </button>
       </div>
 
-      <button 
+      <button
         onClick={onSave}
-        className='w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600'
+        className='bg-slate-800 text-white px-4 sm:px-6 py-2 sm:py-3 rounded w-full text-base sm:text-lg font-bold hover:bg-slate-700'
       >
-        Save Selection
+        Save
       </button>
     </>
   );

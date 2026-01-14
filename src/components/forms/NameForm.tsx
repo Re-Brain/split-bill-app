@@ -8,44 +8,41 @@ interface NameFormProps {
 
 export const NameForm = ({
     onSubmit,
-    buttonText = "Add",
+    buttonText = "Submit",
     placeholder = "Enter name"
 } : NameFormProps) => {
 
-    const [name, setName] = useState("");
+  const [name, setName] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (name.trim() === "") {
-            alert("Please fill in the name");
-            return;
-        }
-
-        onSubmit(name.trim());
-        setName("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (name.trim() === "") {
+      alert("Please enter a name");
+      return;
     }
 
-    return (
-        <form onSubmit={handleSubmit} className='flex justify-between gap-2 p-2 m-2 max-w-md mx-auto'>
+    onSubmit(name.trim());
+    setName(""); // Clear input after submission
+  }
 
-            <input
-            type='text'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder={placeholder}
-            className='border border-gray-300 rounded text-black w-full px-3 py-2 text-sm'
-            />
+  return (
+    <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row justify-between gap-2 p-2 m-2 max-w-md sm:max-w-2xl mx-auto'>
+      <input
+        type='text'
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder={placeholder}
+        className='border border-gray-300 rounded text-black px-3 py-2 text-sm sm:text-base w-full'
+      />
 
-            <button 
-            type="submit"
-            className="bg-slate-800 text-white rounded px-3 py-2 text-sm whitespace-nowrap"
-            >
-            {buttonText}
-            </button>
+      <button 
+        type="submit"
+        className="bg-slate-800 text-white rounded px-4 py-2 text-sm sm:text-base whitespace-nowrap hover:bg-slate-700"
+      >
+        {buttonText}
+      </button>
 
-        </form>
-        
-        
-    )
+    </form>
+  )
 }

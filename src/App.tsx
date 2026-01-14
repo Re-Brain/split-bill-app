@@ -46,7 +46,7 @@ function App() {
   const [serviceCharge, setServiceCharge] = useState<number>(0);
   const [bills, setBills] = useState<PersonBill[]>([]);
   const [showCalculation, setShowCalculation] = useState(false);
-
+  
   const [summaryModalOpen, setSummaryModalOpen] = useState(false);
   const [selectedBill, setSelectedBill] = useState<PersonBill | null>(null);
 
@@ -112,7 +112,6 @@ function App() {
     setShowCalculation(false);
   };
 
-  // Replace the old handleOpenSummary with this:
   const handleOpenSummary = (name: string) => {
     const bill = bills.find(b => b.name === name);
     if (bill) {
@@ -121,7 +120,6 @@ function App() {
     }
   };
 
-  // Add this function:
   const handleCloseSummary = () => {
     setSummaryModalOpen(false);
     setSelectedBill(null);
@@ -129,11 +127,11 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className='bg-slate-800 p-3 w-full text-center'>
-        <Text text="Group Meal Splitter" className="text-3xl text-white"/>
+      <header className='bg-slate-800 p-3 sm:p-4 lg:p-6 w-full text-center'>
+        <Text text="Split Bill App" className="text-2xl sm:text-3xl lg:text-4xl text-white"/>
       </header>
 
-      <main className='bg-white text-center flex-1'>
+      <main className='bg-white text-center flex-1 px-2 sm:px-4 lg:px-8 max-w-7xl mx-auto w-full'>
         <SectionTitle text={`Tablemates (Max : ${MAX_TABLEMATES})`}/>
         <NameForm onSubmit={handleAddName} buttonText='Add' placeholder='Tablemate Name'/>
         <TableMateList tablemates={tablemates} onDelete={handleDeleteName}/>
@@ -178,10 +176,10 @@ function App() {
           />
         )}
 
-        <div className='flex justify-center gap-2 m-2'>
+        <div className='flex flex-col sm:flex-row justify-center gap-2 m-2 max-w-md sm:max-w-2xl mx-auto'>
           <button 
             onClick={handleCalculate}
-            className='bg-blue-500 text-white rounded p-2 hover:bg-blue-600 max-w-md w-full font-bold text-lg'
+            className='bg-slate-800 text-white rounded p-2 sm:p-3 hover:bg-slate-700 w-full font-bold text-base sm:text-lg'
           >
             {showCalculation ? 'Re-Calculate' : 'Calculate'}
           </button>
@@ -189,7 +187,7 @@ function App() {
           {showCalculation && (
             <button 
               onClick={handleReset}
-              className='bg-red-500 text-white rounded p-2 hover:bg-red-600 font-bold text-lg px-6'
+              className='bg-slate-600 text-white rounded p-2 sm:p-3 hover:bg-slate-500 w-full font-bold text-base sm:text-lg'
             >
               Reset
             </button>
@@ -206,9 +204,11 @@ function App() {
         </Modal>
 
       </main>
-      <footer className='bg-slate-800 p-3 w-full text-center'>
-        <Text text="Thank you for using my service" className="text-xs-1 text-white"/>
+
+      <footer className='bg-slate-800 p-5 sm:p-6 w-full text-center'>
+        <Text text="© 2026 Split Bill App. All rights reserved." className="text-xs sm:text-sm text-white"/>
       </footer>
+
     </div>
   )
 }

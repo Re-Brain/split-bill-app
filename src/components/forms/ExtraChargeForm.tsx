@@ -25,19 +25,18 @@ export const ExtraChargeForm = ({
                 }
             }
         }
-
     };
 
     return (
-        <form className='flex justify-between gap-2 p-2 m-2 max-w-md mx-auto'>
+        <form className='flex justify-between gap-2 p-2 m-2 max-w-md sm:max-w-2xl mx-auto'>
             
             <input
                 type='text'
                 value={value === 0 ? '' : value}
                 onChange={handleChange}
                 placeholder={placeholder}
-                className='border border-gray-300 rounded text-black px-3 py-2 max-w-md w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
-                min="0"
+                className='border border-gray-300 rounded text-black px-3 py-2 text-sm sm:text-base w-full'
+                inputMode="numeric"
             />
 
         </form>
