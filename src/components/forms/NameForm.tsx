@@ -16,7 +16,12 @@ export const NameForm = ({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (name.trim() === "") return;
+
+        if (name.trim() === "") {
+            alert("Please fill in the name");
+            return;
+        }
+
         onSubmit(name.trim());
         setName("");
     }
@@ -29,12 +34,12 @@ export const NameForm = ({
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={placeholder}
-            className='border border-gray-300 rounded text-black w-full px-3 py-2'
+            className='border border-gray-300 rounded text-black w-full px-3 py-2 text-sm'
             />
 
             <button 
             type="submit"
-            className="bg-slate-800 text-white rounded p-2 whitespace-nowrap"
+            className="bg-slate-800 text-white rounded px-3 py-2 text-sm whitespace-nowrap"
             >
             {buttonText}
             </button>
