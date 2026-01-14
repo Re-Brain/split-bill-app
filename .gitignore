@@ -45,3 +45,7 @@ Thumbs.db
 *.tmp
 *.temp
 .cache
+
+# Package files (exclude from git)
+package-lock.json
+package.json
