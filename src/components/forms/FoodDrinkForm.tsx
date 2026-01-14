@@ -20,6 +20,22 @@ export const FoodDrinkForm = ({
   const [amount, setAmount] = useState("");
   const [price, setPrice] = useState("");
 
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Only allow empty string or integers
+    if (value === '' || /^\d+$/.test(value)) {
+      setAmount(value);
+    }
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Only allow empty string or integers
+    if (value === '' || /^\d+$/.test(value)) {
+      setPrice(value);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -31,8 +47,8 @@ export const FoodDrinkForm = ({
     const parsedAmount = parseInt(amount);
     const parsedPrice = parseInt(price);
 
-    if (isNaN(parsedAmount) || isNaN(parsedPrice)) {
-      alert("Amount and price must be valid numbers");
+    if (isNaN(parsedAmount) || isNaN(parsedPrice) || parsedAmount <= 0 || parsedPrice <= 0) {
+      alert("Amount and price must be valid positive numbers");
       return;
     }
 
@@ -56,16 +72,18 @@ export const FoodDrinkForm = ({
       <input
         type='text'
         value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        onChange={handleAmountChange}
         placeholder={amountPlaceholder}
         className='border border-gray-300 rounded text-black w-full px-3 py-2 text-sm'
+        inputMode="numeric"
       />
       <input
         type='text'
         value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        onChange={handlePriceChange}
         placeholder={pricePlaceholder}
         className='border border-gray-300 rounded text-black w-full px-3 py-2 text-sm'
+        inputMode="numeric"
       />
 
       <button 
@@ -78,4 +96,3 @@ export const FoodDrinkForm = ({
     </form>
   )
 }
-
