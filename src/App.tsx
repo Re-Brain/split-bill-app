@@ -15,11 +15,25 @@ import { FoodDrinkTable } from './components/FoodDrinkTable'
 
 import { useTableMateModal } from './hooks/useTableMateModal'
 
+import { PriceCalculationTable } from './components/PriceCalculationTable'
+import { calculateBills } from './utils/billCalculator'
+import { SummaryModal } from './components/Modal/SummaryModal'
+
 interface FoodDrinkItem {
   foodDrink: string;
   amount: number;
   price: number;
   sharedWith: string[];
+}
+
+interface PersonBill {
+  name: string;
+  total: number;
+  items: {
+    foodDrink: string;
+    amount: number;
+    pricePerPerson: number;
+  }[];
 }
 
 function App() {
@@ -30,6 +44,11 @@ function App() {
   const [foodDrinks, setFoodDrinks] = useState<FoodDrinkItem[]>([]);
   const [tax, setTax] = useState<number>(0);
   const [serviceCharge, setServiceCharge] = useState<number>(0);
+  const [bills, setBills] = useState<PersonBill[]>([]);
+  const [showCalculation, setShowCalculation] = useState(false);
+
+  const [summaryModalOpen, setSummaryModalOpen] = useState(false);
+  const [selectedBill, setSelectedBill] = useState<PersonBill | null>(null);
 
   const {
     modalOpen,
@@ -71,6 +90,41 @@ function App() {
 
   const handleDeleteFoodDrink = (index: number) => {
     setFoodDrinks(foodDrinks.filter((_, i) => i !== index));
+  };
+
+  const handleCalculate = () => {
+    if (tablemates.length === 0) {
+      alert("Please add at least one tablemate!");
+      return;
+    }
+    if (foodDrinks.length === 0) {
+      alert("Please add at least one food/drink item!");
+      return;
+    }
+
+    const calculatedBills = calculateBills(foodDrinks, tablemates, tax, serviceCharge);
+    setBills(calculatedBills);
+    setShowCalculation(true);
+  };
+
+  const handleReset = () => {
+    setBills([]);
+    setShowCalculation(false);
+  };
+
+  // Replace the old handleOpenSummary with this:
+  const handleOpenSummary = (name: string) => {
+    const bill = bills.find(b => b.name === name);
+    if (bill) {
+      setSelectedBill(bill);
+      setSummaryModalOpen(true);
+    }
+  };
+
+  // Add this function:
+  const handleCloseSummary = () => {
+    setSummaryModalOpen(false);
+    setSelectedBill(null);
   };
 
   return (
@@ -117,6 +171,40 @@ function App() {
 
         <SectionTitle text={`Price Calculation`}/>
       
+        {showCalculation && (
+          <PriceCalculationTable 
+            bills={bills}
+            onOpenSummary={handleOpenSummary}
+          />
+        )}
+
+        <div className='flex justify-center gap-2 m-2'>
+          <button 
+            onClick={handleCalculate}
+            className='bg-blue-500 text-white rounded p-2 hover:bg-blue-600 max-w-md w-full font-bold text-lg'
+          >
+            {showCalculation ? 'Re-Calculate' : 'Calculate'}
+          </button>
+
+          {showCalculation && (
+            <button 
+              onClick={handleReset}
+              className='bg-red-500 text-white rounded p-2 hover:bg-red-600 font-bold text-lg px-6'
+            >
+              Reset
+            </button>
+          )}
+        </div>
+
+        <Modal isOpen={summaryModalOpen} onClose={handleCloseSummary}>
+          <SummaryModal 
+            bill={selectedBill}
+            tax={tax}
+            serviceCharge={serviceCharge}
+            totalTablemates={tablemates.length}
+          />
+        </Modal>
+
       </main>
       <footer className='bg-slate-800 p-3 w-full text-center'>
         <Text text="Thank you for using my service" className="text-xs-1 text-white"/>
