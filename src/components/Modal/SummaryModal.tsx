@@ -34,7 +34,7 @@ export const SummaryModal = ({ bill, tax, serviceCharge, totalTablemates }: Summ
             bill.items.map((item, index) => (
               <div key={index} className='flex justify-between items-center p-2 bg-slate-100 rounded mb-2'>
                 <span className='text-slate-800 flex-1 text-sm sm:text-base'>{item.foodDrink}</span>
-                <span className='text-slate-800 font-semibold text-sm sm:text-base'>${item.pricePerPerson.toFixed(2)}</span>
+                <span className='text-slate-800 font-semibold text-sm sm:text-base'>{item.pricePerPerson.toFixed(2)}</span>
               </div>
             ))
           ) : (
@@ -43,7 +43,7 @@ export const SummaryModal = ({ bill, tax, serviceCharge, totalTablemates }: Summ
         </div>
         <div className='flex justify-between items-center p-2 mt-2 border-t-2 border-slate-300'>
           <span className='text-slate-800 font-semibold text-sm sm:text-base'>Food Subtotal:</span>
-          <span className='text-slate-800 font-semibold text-sm sm:text-base'>${foodTotal.toFixed(2)}</span>
+          <span className='text-slate-800 font-semibold text-sm sm:text-base'>{foodTotal.toFixed(2)}</span>
         </div>
       </div>
 
@@ -53,13 +53,13 @@ export const SummaryModal = ({ bill, tax, serviceCharge, totalTablemates }: Summ
         {tax > 0 && (
           <div className='flex justify-between items-center p-2 bg-slate-100 rounded mb-2'>
             <span className='text-slate-800 text-sm sm:text-base'>Tax (split among {totalTablemates})</span>
-            <span className='text-slate-800 font-semibold text-sm sm:text-base'>${taxPerPerson.toFixed(2)}</span>
+            <span className='text-slate-800 font-semibold text-sm sm:text-base'>{taxPerPerson.toFixed(2)}</span>
           </div>
         )}
         {serviceCharge > 0 && (
           <div className='flex justify-between items-center p-2 bg-slate-100 rounded mb-2'>
             <span className='text-slate-800 text-sm sm:text-base'>Service Charge (split among {totalTablemates})</span>
-            <span className='text-slate-800 font-semibold text-sm sm:text-base'>${serviceChargePerPerson.toFixed(2)}</span>
+            <span className='text-slate-800 font-semibold text-sm sm:text-base'>{serviceChargePerPerson.toFixed(2)}</span>
           </div>
         )}
         {tax === 0 && serviceCharge === 0 && (
@@ -70,13 +70,13 @@ export const SummaryModal = ({ bill, tax, serviceCharge, totalTablemates }: Summ
       {/* Total */}
       <div className='flex justify-between items-center p-3 bg-slate-800 rounded'>
         <span className='text-white text-lg sm:text-xl font-bold'>Total:</span>
-        <span className='text-white text-lg sm:text-xl font-bold'>${bill.total.toFixed(2)}</span>
+        <span className='text-white text-lg sm:text-xl font-bold'>{bill.total.toFixed(2)}</span>
       </div>
 
       {/* Breakdown Formula */}
       <div className='mt-4 p-3 bg-slate-50 rounded text-xs sm:text-sm text-slate-700'>
         <p className='font-semibold mb-1'>Calculation:</p>
-        <p>${foodTotal.toFixed(2)} (food) + ${taxPerPerson.toFixed(2)} (tax) + ${serviceChargePerPerson.toFixed(2)} (service) = ${bill.total.toFixed(2)}</p>
+        <p>{foodTotal.toFixed(2)} (food) + {taxPerPerson.toFixed(2)} (tax) + {serviceChargePerPerson.toFixed(2)} (service) = {bill.total.toFixed(2)}</p>
       </div>
     </>
   );
