@@ -27,9 +27,9 @@ export const PriceCalculationTable = ({ bills, onOpenSummary }: PriceCalculation
       <table className='w-full border-separate table-fixed' style={{ borderSpacing: '4px' }}>
         <thead>
           <tr>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>👤</th>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Total</th>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Summary</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>👤</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>💵 Total</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>📄 Summary</th>
           </tr>
         </thead>
       </table>
@@ -38,15 +38,15 @@ export const PriceCalculationTable = ({ bills, onOpenSummary }: PriceCalculation
         <table className='w-full border-separate table-fixed' style={{ borderSpacing: '4px' }}>
           <tbody>
             {bills.map((bill, index) => (
-              <tr key={index}>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{bill.name}</td>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{bill.total.toFixed(2)}</td>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base text-center'>
+              <tr key={index} className='fade-in'>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-sm'>{bill.name}</td>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-sm'>{bill.total.toFixed(2)}</td>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base text-center shadow-sm'>
                   <button 
                     onClick={() => onOpenSummary(bill.name)}
-                    className='bg-slate-600 text-white px-2 py-1 rounded text-xs sm:text-sm hover:bg-slate-500'
+                    className='bg-secondary bg-secondary-hover text-white px-2 py-1 rounded text-xs sm:text-sm hover-scale'
                   >
-                    View
+                    👁️ View
                   </button>
                 </td>
               </tr>

@@ -24,58 +24,58 @@ export const SummaryModal = ({ bill, tax, serviceCharge, totalTablemates }: Summ
 
   return (
     <>
-      <h2 className='text-xl sm:text-2xl font-bold mb-4 text-slate-800'>Summary for {bill.name}</h2>
+      <h2 className='text-xl sm:text-2xl font-bold mb-4' style={{color: 'var(--color-text)'}}>Summary for {bill.name}</h2>
       
       {/* Food Items Breakdown */}
       <div className='mb-4'>
-        <h3 className='text-base sm:text-lg font-semibold text-slate-800 mb-2'>Food & Drinks:</h3>
+        <h3 className='text-base sm:text-lg font-semibold mb-2' style={{color: 'var(--color-text)'}}>Food & Drinks:</h3>
         <div className='max-h-64 overflow-y-auto'>
           {bill.items.length > 0 ? (
             bill.items.map((item, index) => (
-              <div key={index} className='flex justify-between items-center p-2 bg-slate-100 rounded mb-2'>
-                <span className='text-slate-800 flex-1 text-sm sm:text-base'>{item.foodDrink}</span>
-                <span className='text-slate-800 font-semibold text-sm sm:text-base'>{item.pricePerPerson.toFixed(2)}</span>
+              <div key={index} className='flex justify-between items-center p-2 rounded mb-2' style={{backgroundColor: 'var(--color-neutral-light)'}}>
+                <span className='flex-1 text-sm sm:text-base' style={{color: 'var(--color-text)'}}>{item.foodDrink}</span>
+                <span className='font-semibold text-sm sm:text-base' style={{color: 'var(--color-text)'}}>{item.pricePerPerson.toFixed(2)}</span>
               </div>
             ))
           ) : (
-            <p className='text-slate-600 text-sm sm:text-base'>No food items</p>
+            <p className='text-sm sm:text-base' style={{color: 'var(--color-text-secondary)'}}>No food items</p>
           )}
         </div>
-        <div className='flex justify-between items-center p-2 mt-2 border-t-2 border-slate-300'>
-          <span className='text-slate-800 font-semibold text-sm sm:text-base'>Food Subtotal:</span>
-          <span className='text-slate-800 font-semibold text-sm sm:text-base'>{foodTotal.toFixed(2)}</span>
+        <div className='flex justify-between items-center p-2 mt-2' style={{borderTop: '2px solid var(--color-border)'}}>
+          <span className='font-semibold text-sm sm:text-base' style={{color: 'var(--color-text)'}}>Food Subtotal:</span>
+          <span className='font-semibold text-sm sm:text-base' style={{color: 'var(--color-text)'}}>{foodTotal.toFixed(2)}</span>
         </div>
       </div>
 
       {/* Tax and Service Charge */}
       <div className='mb-4'>
-        <h3 className='text-base sm:text-lg font-semibold text-slate-800 mb-2'>Additional Charges:</h3>
+        <h3 className='text-base sm:text-lg font-semibold mb-2' style={{color: 'var(--color-text)'}}>Additional Charges:</h3>
         {tax > 0 && (
-          <div className='flex justify-between items-center p-2 bg-slate-100 rounded mb-2'>
-            <span className='text-slate-800 text-sm sm:text-base'>Tax (split among {totalTablemates})</span>
-            <span className='text-slate-800 font-semibold text-sm sm:text-base'>{taxPerPerson.toFixed(2)}</span>
+          <div className='flex justify-between items-center p-2 rounded mb-2' style={{backgroundColor: 'var(--color-neutral-light)'}}>
+            <span className='text-sm sm:text-base' style={{color: 'var(--color-text)'}}>Tax (split among {totalTablemates})</span>
+            <span className='font-semibold text-sm sm:text-base' style={{color: 'var(--color-text)'}}>{taxPerPerson.toFixed(2)}</span>
           </div>
         )}
         {serviceCharge > 0 && (
-          <div className='flex justify-between items-center p-2 bg-slate-100 rounded mb-2'>
-            <span className='text-slate-800 text-sm sm:text-base'>Service Charge (split among {totalTablemates})</span>
-            <span className='text-slate-800 font-semibold text-sm sm:text-base'>{serviceChargePerPerson.toFixed(2)}</span>
+          <div className='flex justify-between items-center p-2 rounded mb-2' style={{backgroundColor: 'var(--color-neutral-light)'}}>
+            <span className='text-sm sm:text-base' style={{color: 'var(--color-text)'}}>Service Charge (split among {totalTablemates})</span>
+            <span className='font-semibold text-sm sm:text-base' style={{color: 'var(--color-text)'}}>{serviceChargePerPerson.toFixed(2)}</span>
           </div>
         )}
         {tax === 0 && serviceCharge === 0 && (
-          <p className='text-slate-600 text-sm sm:text-base'>No additional charges</p>
+          <p className='text-sm sm:text-base' style={{color: 'var(--color-text-secondary)'}}>No additional charges</p>
         )}
       </div>
 
       {/* Total */}
-      <div className='flex justify-between items-center p-3 bg-slate-800 rounded'>
-        <span className='text-white text-lg sm:text-xl font-bold'>Total:</span>
+      <div className='flex justify-between items-center p-3 bg-gradient-primary rounded-lg shadow-lg'>
+        <span className='text-white text-lg sm:text-xl font-bold'>💵 Total:</span>
         <span className='text-white text-lg sm:text-xl font-bold'>{bill.total.toFixed(2)}</span>
       </div>
 
       {/* Breakdown Formula */}
-      <div className='mt-4 p-3 bg-slate-50 rounded text-xs sm:text-sm text-slate-700'>
-        <p className='font-semibold mb-1'>Calculation:</p>
+      <div className='mt-4 p-3 rounded-lg text-xs sm:text-sm border-accent-left shadow-sm' style={{backgroundColor: 'var(--color-bg-alt)', color: 'var(--color-text-secondary)'}}>
+        <p className='font-semibold mb-1'>🧮 Calculation:</p>
         <p>{foodTotal.toFixed(2)} (food) + {taxPerPerson.toFixed(2)} (tax) + {serviceChargePerPerson.toFixed(2)} (service) = {bill.total.toFixed(2)}</p>
       </div>
     </>

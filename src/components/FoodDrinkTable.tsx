@@ -22,11 +22,11 @@ export const FoodDrinkTable = ({ foodDrinks, onOpenModal, onDelete }: FoodDrinks
       <table className='w-full border-separate table-fixed' style={{ borderSpacing: '4px' }}>
         <thead>
           <tr>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Item</th>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Amount</th>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Price</th>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Shared</th>
-            <th className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>Action</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>Item</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>Amount</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>Price</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>Shared</th>
+            <th className='text-white bg-primary px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-md'>Action</th>
           </tr>
         </thead>
       </table>
@@ -35,24 +35,24 @@ export const FoodDrinkTable = ({ foodDrinks, onOpenModal, onDelete }: FoodDrinks
         <table className='w-full border-separate table-fixed' style={{ borderSpacing: '4px' }}>
           <tbody>
             {foodDrinks.map((item, index) => (
-              <tr key={index}>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{item.foodDrink}</td>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{item.amount}</td>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>{item.price}</td>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base text-center'>
+              <tr key={index} className='fade-in'>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-sm'>{item.foodDrink}</td>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-sm'>{item.amount}</td>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-sm'>{item.price}</td>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base text-center shadow-sm'>
                   <button 
                     onClick={() => onOpenModal(index)}
-                    className='bg-slate-600 text-white px-2 py-1 rounded text-xs sm:text-sm hover:bg-slate-500'
+                    className='bg-accent bg-accent-hover text-white px-2 py-1 rounded text-xs sm:text-sm hover-scale'
                   >
-                    {item.sharedWith.length > 0 ? `👤${item.sharedWith.length}` : 'Choose'}
+                    {item.sharedWith.length > 0 ? `👤${item.sharedWith.length}` : '👥 Choose'}
                   </button>
                 </td>
-                <td className='text-white bg-slate-800 px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base'>
+                <td className='text-white bg-neutral px-1 sm:px-2 py-1 sm:py-2 rounded-lg text-xs sm:text-sm lg:text-base shadow-sm'>
                   <button 
                     onClick={() => onDelete(index)}
-                    className='bg-slate-600 text-white px-2 py-1 rounded text-xs sm:text-sm hover:bg-slate-500'
+                    className='bg-danger bg-danger-hover text-white px-2 py-1 rounded text-xs sm:text-sm hover-scale'
                   >
-                    Delete
+                    🗑️ Delete
                   </button>
                 </td>
               </tr>

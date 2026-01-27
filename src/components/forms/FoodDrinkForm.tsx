@@ -88,9 +88,9 @@ export const FoodDrinkForm = ({
 
       <button 
         type="submit"
-        className="bg-slate-800 text-white rounded px-3 sm:px-4 py-2 text-sm sm:text-base whitespace-nowrap hover:bg-slate-700"
+        className="bg-primary bg-primary-hover text-white rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base whitespace-nowrap shadow-md hover-scale"
       >
-        {buttonText}
+        ➕ {buttonText}
       </button>
 
     </form>

@@ -125,17 +125,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className='bg-slate-800 p-3 sm:p-4 lg:p-6 w-full text-center'>
-        <Text text="Split Bill App" className="text-2xl sm:text-3xl lg:text-4xl text-white"/>
+    <div className="flex flex-col min-h-screen">
+      <header className='bg-gradient-primary p-3 sm:p-4 lg:p-6 w-full text-center shadow-lg flex-shrink-0'>
+        <Text text="🍽️ Pay YOURS Bill 🍽️" className="text-2xl sm:text-3xl lg:text-4xl text-white font-bold"/>
       </header>
 
-      <main className='bg-white text-center flex-1 px-2 sm:px-4 lg:px-8 max-w-7xl mx-auto w-full'>
-        <SectionTitle text={`Tablemates (Max : ${MAX_TABLEMATES})`}/>
+      <main className='text-center px-2 sm:px-4 lg:px-8 max-w-7xl mx-auto w-full py-4'>
+        <SectionTitle text={`👥 Tablemates (Max : ${MAX_TABLEMATES})`}/>
         <NameForm onSubmit={handleAddName} buttonText='Add' placeholder='Tablemate Name'/>
         <TableMateList tablemates={tablemates} onDelete={handleDeleteName}/>
 
-        <SectionTitle text={`Food & Drinks (Max : ${MAX_FOOD_DRINKS})`}/>
+        <SectionTitle text={`🍽️ Food & Drinks (Max : ${MAX_FOOD_DRINKS})`}/>
         <FoodDrinkForm
           onSubmit={handleAddFoodAndDrink}
           buttonText='Add'
@@ -160,10 +160,10 @@ function App() {
           />
         </Modal>
 
-        <SectionTitle text={`Tax (Optional)`}/>
+        <SectionTitle text={`💰 Tax (Optional)`}/>
         <ExtraChargeForm value={tax} onChange={setTax} placeholder='Tax (Optional)'/>
 
-        <SectionTitle text={`Service Charge (Optional)`}/>
+        <SectionTitle text={`💵 Service Charge (Optional)`}/>
         <ExtraChargeForm value={serviceCharge} onChange={setServiceCharge} placeholder='Service Charge (Optional)'/>
 
         <PriceCalculationSection
@@ -185,8 +185,24 @@ function App() {
 
       </main>
 
-      <footer className='bg-slate-800 p-5 sm:p-6 w-full text-center'>
-        <Text text="© 2026 Split Bill App. All rights reserved." className="text-xs sm:text-sm text-white"/>
+      <footer className='bg-gradient-primary p-5 sm:p-6 w-full text-center shadow-lg flex-shrink-0 mt-auto'>
+        <p className="text-sm sm:text-base text-white mt-2">
+          Crafted by{' '}
+          <a 
+            href="https://github.com/Re-Brain" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="underline hover:text-yellow-200 transition-colors"
+          >
+            Re-Brain
+          </a>
+        </p>
+        <p className="text-sm sm:text-base text-white mt-1">
+          Spot an issue? Contact{' '}
+          <a href="mailto:brainditthakit@gmail.com" className="underline hover:text-yellow-200 transition-colors">
+            brainditthakit@gmail.com
+          </a>
+        </p>
       </footer>
 
     </div>
