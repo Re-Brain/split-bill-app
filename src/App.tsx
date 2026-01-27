@@ -126,7 +126,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className='bg-gradient-primary p-3 sm:p-4 lg:p-6 w-full text-center shadow-lg flex-shrink-0'>
+      <header className='bg-gradient-primary p-3 sm:p-4 lg:p-6 w-full text-center shadow-lg shrink-0'>
         <Text text="🍽️ Pay YOURS Bill 🍽️" className="text-2xl sm:text-3xl lg:text-4xl text-white font-bold"/>
       </header>
 
@@ -185,7 +185,7 @@ function App() {
 
       </main>
 
-      <footer className='bg-gradient-primary p-5 sm:p-6 w-full text-center shadow-lg flex-shrink-0 mt-auto'>
+      <footer className='bg-gradient-primary p-5 sm:p-6 w-full text-center shadow-lg shrink-0 mt-auto'>
         <p className="text-sm sm:text-base text-white mt-2">
           Crafted by{' '}
           <a 
