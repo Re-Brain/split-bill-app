@@ -14,7 +14,7 @@ A modern, responsive web application for splitting meal bills fairly among frien
 
 ## 🚀 Live Demo
 
-[Add your deployed link here]
+Live Demo : re-brain.github.io/split-bill-app/
 
 ## 🛠️ Tech Stack
 
@@ -202,4 +202,4 @@ For support, email cwnditthakit@gmail.com or open an issue in the GitHub reposit
 
 ---
 
-Made with ❤️ for splitting bills fairly
+Crafted for splitting bills fairly

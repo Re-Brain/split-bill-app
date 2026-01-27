@@ -199,8 +199,8 @@ function App() {
         </p>
         <p className="text-sm sm:text-base text-white mt-1">
           Spot an issue? Contact{' '}
-          <a href="mailto:brainditthakit@gmail.com" className="underline hover:text-yellow-200 transition-colors">
-            brainditthakit@gmail.com
+          <a href="mailto:cwnditthakit@gmail.com" className="underline hover:text-yellow-200 transition-colors">
+            cwnditthakit@gmail.com
           </a>
         </p>
       </footer>
